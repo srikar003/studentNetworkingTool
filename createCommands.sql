@@ -1,4 +1,4 @@
-create database studentNetworkingTool;
+create database IF NOT EXISTS studentNetworkingTool;
 
 use studentNetworkingTool;
 
