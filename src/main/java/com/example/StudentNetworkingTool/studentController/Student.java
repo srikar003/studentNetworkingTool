@@ -14,12 +14,14 @@ public class Student {
 	private String college;
 	private String dept;
 	private String[] contacts;
-	
+	private String studentId;
+
 	public Student() {}
 	
-	public Student(String userName, String password, String firstName, String lastName, String email, Date dob,
+	public Student(String studentId, String userName, String password, String firstName, String lastName, String email, Date dob,
 			String college, String dept, String[] contacts) {
 		super();
+		this.studentId = studentId;
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
@@ -84,5 +86,13 @@ public class Student {
 	}
 	public void setContacts(String[] contacts) {
 		this.contacts = contacts;
+	}
+	
+	public String getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
 	}
 }

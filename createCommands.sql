@@ -24,7 +24,7 @@ create table students(
     collegeName varchar(20) not null,
     department varchar(15) not null,
     primary key(studentId),
-    foreign key(userName) REFERENCES studentRegistration(userName)
+    foreign key(userName) REFERENCES studentRegistration(userName) on delete cascade on update cascade
 );
 
 create table courses(
@@ -38,7 +38,7 @@ create table studentContact(
     contactNo numeric(10),
     studentId varchar(16),
     primary key(contactNo),
-    foreign key(studentId) REFERENCES students(studentId)
+    foreign key(studentId) REFERENCES students(studentId) on delete cascade on update cascade
 );
 
 create table events(
@@ -56,47 +56,47 @@ create table instructors(
     dateOfBirth date,
     userName varchar(10) not null,
     primary key(instructorId),
-    foreign key(userName) REFERENCES instructorRegistration(userName)
+    foreign key(userName) REFERENCES instructorRegistration(userName) on delete cascade on update cascade
 );
 
 create table instructorContact(
     contactNo numeric(10),
     instructorId varchar(16),
     primary key(contactNo),
-    foreign key(instructorId) REFERENCES instructors(instructorId)
+    foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade
 );
 
 create table enrollment(
     studentId varchar(16),
     courseId varchar(16),
-    foreign key(studentId) REFERENCES students(studentId),
-    foreign key(courseId) REFERENCES courses(courseId)
+    foreign key(studentId) REFERENCES students(studentId) on delete cascade on update cascade,
+    foreign key(courseId) REFERENCES courses(courseId) on delete cascade on update cascade
 );
 
 create table eventParticipation(
     studentId varchar(16),
     eventId varchar(16),
-    foreign key(studentId) REFERENCES students(studentId),
-    foreign key(eventId) REFERENCES events(eventId)
+    foreign key(studentId) REFERENCES students(studentId) on delete cascade on update cascade,
+    foreign key(eventId) REFERENCES events(eventId) on delete cascade on update cascade
 );
 
 create table teaches(
     instructorId varchar(16) not null,
     courseId varchar(16) not null,
-    foreign key(instructorId) REFERENCES instructors(instructorId),
-    foreign key(courseId) REFERENCES courses(courseId)
+    foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade,
+    foreign key(courseId) REFERENCES courses(courseId) on delete cascade on update cascade
 );
 
 create table corporateProfessionals(
     instructorId varchar(16) not null,
     companyName varchar(20) not null,
-    foreign key(instructorId) REFERENCES instructors(instructorId)
+    foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade
 );
 
 create table professors(
     instructorId varchar(16) not null,
     universityName varchar(50) not null,
-    foreign key(instructorId) REFERENCES instructors(instructorId)
+    foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade
 );
 
 create table queries(
@@ -105,23 +105,23 @@ create table queries(
     studentId varchar(16),
     courseId varchar(16),
     primary key(queryId),
-    foreign key(studentId) REFERENCES students(studentId),
-    foreign key(courseId) REFERENCES courses(courseId)
+    foreign key(studentId) REFERENCES students(studentId) on delete cascade on update cascade,
+    foreign key(courseId) REFERENCES courses(courseId) on delete cascade on update cascade
 );
 
 create table queryResponses(
     instructorId varchar(16),
     response varchar(100),
     queryId varchar(16),
-    foreign key(queryId) REFERENCES queries(queryId),
-    foreign key(instructorId) REFERENCES instructors(instructorId)
+    foreign key(queryId) REFERENCES queries(queryId) on delete cascade on update cascade,
+    foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade
 );
 
 create table queryTags(
     hashtags varchar(10),
     queryId varchar(16),
     primary key(hashtags),
-    foreign key(queryId) REFERENCES queries(queryId)
+    foreign key(queryId) REFERENCES queries(queryId) on delete cascade on update cascade
 );
 
 create table payment(
@@ -132,8 +132,8 @@ create table payment(
     studentId varchar(16) not null,
     courseId varchar(16),
     primary key(transactionId),
-    foreign key(studentId) REFERENCES students(studentId),
-    foreign key(courseId) REFERENCES courses(courseId)
+    foreign key(studentId) REFERENCES students(studentId) on delete cascade on update cascade,
+    foreign key(courseId) REFERENCES courses(courseId) on delete cascade on update cascade
 );
 
 create table cardPayment(
@@ -143,7 +143,7 @@ create table cardPayment(
     expiryYear numeric(2),
     cvv numeric(4),
     transactionId numeric(30),
-    foreign key(transactionId) REFERENCES payment(transactionId)
+    foreign key(transactionId) REFERENCES payment(transactionId) on delete cascade on update cascade
 );
 
 create table electronicCheck(
@@ -152,5 +152,5 @@ create table electronicCheck(
     bankName varchar(20),
     branch varchar(20),
     transactionId numeric(30),
-    foreign key(transactionId) REFERENCES payment(transactionId)
+    foreign key(transactionId) REFERENCES payment(transactionId) on delete cascade on update cascade
 );
