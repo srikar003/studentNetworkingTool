@@ -2,7 +2,7 @@ insert into studentRegistration values ('pearson','clear lake'),('mcgraw','katy'
 
 insert into instructorRegistration values ('tom','boston'),('lulu','denver'),('abcd','miami');
 
-insert into students values ('111','joseph','boston','jb@gmail.com','1995-11-01','pearson'),('222','john','austin','ja@gmail.com','1995=11-08','mcgraw'),('333','mike','dallas','md@gmail.com','1992-09-09','dolphin');
+insert into students values ('111','joseph','boston','jb@gmail.com','1995-11-01','pearson','uhcl','cse'),('222','john','austin','ja@gmail.com','1995=11-08','mcgraw','uhcl','cse'),('333','mike','dallas','md@gmail.com','1992-09-09','dolphin','uhcl','cse');
 
 insert into courses values ('10','dbms',0),('11','cpsm',1),('12','rm',0);
 
