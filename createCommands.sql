@@ -4,7 +4,7 @@ use studentNetworkingTool;
 
 create table studentRegistration(
     userName varchar(10) not null,
-    password varchar(20)not null,
+    password varchar(20) not null,
     primary key(userName)
 );
 
@@ -94,7 +94,7 @@ create table corporateProfessionals(
 );
 
 create table professors(
-    instructorId varchar(16) not null,    
+    instructorId varchar(16) not null,
     universityName varchar(50) not null,
     foreign key(instructorId) REFERENCES instructors(instructorId)
 );
@@ -111,7 +111,7 @@ create table queries(
 
 create table queryResponses(
     instructorId varchar(16),
-    response varchar(100),    
+    response varchar(100),
     queryId varchar(16),
     foreign key(queryId) REFERENCES queries(queryId),
     foreign key(instructorId) REFERENCES instructors(instructorId)
