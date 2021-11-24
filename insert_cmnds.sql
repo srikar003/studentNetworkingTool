@@ -38,11 +38,3 @@ insert into electronicCheck values ('bhui',12345,'chase','cl',11111),('wscd',896
 select * from studentRegistration;
 
 select * from instructorRegistration;
-
-
-
-
-
-
-
-
