@@ -20,10 +20,18 @@ public class StudentController {
 
         String insertStudentRegistrationQuery = "INSERT INTO studentRegistration (userName, password) VALUES (?, ?)";
         String insertStudentInfoQuery = "INSERT INTO students (studentId, firstName, lastName, email, dateOfBirth, userName) VALUES (?,?,?,?,?,?)";
-
+        String insertStudentContactsQuery = "INSERT INTO studentContact (contactNo, studentId) VALUES (?, ?)";
+        
         int result = jdbcTemplate.update(insertStudentRegistrationQuery, student.getUserName(), student.getPassword());
         int result1 = jdbcTemplate.update(insertStudentInfoQuery, student.getStudentId(), student.getFirstName(),
                 student.getLastName(), student.getEmail(), student.getDob(), student.getUserName());
+        String[] contactList = student.getContacts();
+        for(int i=0;i<contactList.length;i++) {
+        	int result2 =  jdbcTemplate.update(insertStudentContactsQuery,contactList[i]);
+        	if (result2<=0) {
+                return false;
+            }
+        }
         if (result > 0 && result1 > 0) {
             System.out.println("A new row has been inserted.");
             return true;
