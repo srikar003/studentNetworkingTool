@@ -1,8 +1,5 @@
 package com.example.StudentNetworkingTool.eventController;
 
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
 public class Event {
 	private String eventId;
 	private String eventName;

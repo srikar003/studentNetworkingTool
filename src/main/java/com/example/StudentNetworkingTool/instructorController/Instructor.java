@@ -1,8 +1,5 @@
 package com.example.StudentNetworkingTool.instructorController;
 
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
 public class Instructor {
 	private String userName;
 	private String password;

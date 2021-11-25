@@ -2,8 +2,6 @@ package com.example.StudentNetworkingTool.studentController;
 
 import java.util.Date;
 
-import org.springframework.web.bind.annotation.RestController;
-@RestController
 public class Student {
 	private String userName;
 	private String password;

@@ -1,15 +1,13 @@
 package com.example.StudentNetworkingTool.courseController;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.lang.String;
 
-@RestController
 public class Course{
 	private String courseId;
 	private String courseName;
 	private boolean isPaidResource;
 	
 	public Course(String courseId, String courseName, boolean isPaidResource) {
-		super();
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.isPaidResource = isPaidResource;

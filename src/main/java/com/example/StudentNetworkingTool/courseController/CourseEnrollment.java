@@ -1,8 +1,5 @@
 package com.example.StudentNetworkingTool.courseController;
 
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
 public class CourseEnrollment {
 	private String studentId;
 	private String courseId;

@@ -1,8 +1,5 @@
 package com.example.StudentNetworkingTool.queriesController;
 
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
 public class QueryResponses {
 	private String instructorId;
 	private String response;

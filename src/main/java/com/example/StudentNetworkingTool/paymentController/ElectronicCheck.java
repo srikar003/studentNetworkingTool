@@ -1,8 +1,5 @@
 package com.example.StudentNetworkingTool.paymentController;
 
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
 public class ElectronicCheck {
 	private String accountHolder;
 	private String routingNo;

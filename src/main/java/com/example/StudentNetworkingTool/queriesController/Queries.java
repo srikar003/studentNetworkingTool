@@ -1,8 +1,5 @@
 package com.example.StudentNetworkingTool.queriesController;
 
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
 public class Queries {
 	private String queryId;
 	private String question;

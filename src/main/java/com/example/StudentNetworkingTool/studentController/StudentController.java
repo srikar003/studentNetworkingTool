@@ -17,18 +17,19 @@ public class StudentController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(method = RequestMethod.POST, value = "/studentRegistration")
     public boolean studentRegistration(@RequestBody Student student) {
-
+        System.out.println(student);
         String insertStudentRegistrationQuery = "INSERT INTO studentRegistration (userName, password) VALUES (?, ?)";
-        String insertStudentInfoQuery = "INSERT INTO students (studentId, firstName, lastName, email, dateOfBirth, userName) VALUES (?,?,?,?,?,?)";
+        String insertStudentInfoQuery = "INSERT INTO students (studentId, firstName, lastName, email, dateOfBirth, college,department, userName) VALUES (?,?,?,?,?,?,?,?)";
         String insertStudentContactsQuery = "INSERT INTO studentContact (contactNo, studentId) VALUES (?, ?)";
-        
+
         int result = jdbcTemplate.update(insertStudentRegistrationQuery, student.getUserName(), student.getPassword());
         int result1 = jdbcTemplate.update(insertStudentInfoQuery, student.getStudentId(), student.getFirstName(),
-                student.getLastName(), student.getEmail(), student.getDob(), student.getUserName());
+                student.getLastName(), student.getEmail(), student.getDob(), student.getCollege(), student.getDept(),
+                student.getUserName());
         String[] contactList = student.getContacts();
-        for(int i=0;i<contactList.length;i++) {
-        	int result2 =  jdbcTemplate.update(insertStudentContactsQuery,contactList[i]);
-        	if (result2<=0) {
+        for (int i = 0; i < contactList.length; i++) {
+            int result2 = jdbcTemplate.update(insertStudentContactsQuery, contactList[i]);
+            if (result2 <= 0) {
                 return false;
             }
         }

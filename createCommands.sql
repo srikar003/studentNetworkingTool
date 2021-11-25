@@ -20,9 +20,9 @@ create table students(
     lastName varchar(20),
     email varchar(30) not null,
     dateOfBirth date not null,
-    userName varchar(10) not null,
-    collegeName varchar(20) not null,
+    college varchar(20) not null,
     department varchar(15) not null,
+    userName varchar(10) not null,
     primary key(studentId),
     foreign key(userName) REFERENCES studentRegistration(userName) on delete cascade on update cascade
 );
