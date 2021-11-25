@@ -94,12 +94,14 @@ create table IF NOT EXISTS teaches(
 create table IF NOT EXISTS corporateProfessionals(
     instructorId varchar(36) not null,
     companyName varchar(20) not null,
+    areaOfExpertise varchar(30) not null,
     foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS professors(
     instructorId varchar(36) not null,
     universityName varchar(50) not null,
+    dept varchar(30) not null,
     foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade
 );
 
