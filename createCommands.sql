@@ -24,7 +24,7 @@ create table IF NOT EXISTS students(
     department varchar(15) not null,
     userName varchar(10) not null,
     primary key(studentId),
-    foreign key(userName) REFERENCES studentRegistration(userName)
+    foreign key(userName) REFERENCES studentRegistration(userName) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS courses(
@@ -39,7 +39,7 @@ create table IF NOT EXISTS studentContact(
     contactNo numeric(10),
     studentId varchar(36),
     primary key(contactNo),
-    foreign key(studentId) REFERENCES students(studentId)
+    foreign key(studentId) REFERENCES students(studentId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS events(
@@ -57,47 +57,47 @@ create table IF NOT EXISTS instructors(
     dateOfBirth date,
     userName varchar(10) not null,
     primary key(instructorId),
-    foreign key(userName) REFERENCES instructorRegistration(userName)
+    foreign key(userName) REFERENCES instructorRegistration(userName) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS instructorContact(
     contactNo numeric(10),
     instructorId varchar(36),
     primary key(contactNo),
-    foreign key(instructorId) REFERENCES instructors(instructorId)
+    foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS enrollment(
     studentId varchar(36),
     courseId varchar(36),
-    foreign key(studentId) REFERENCES students(studentId),
-    foreign key(courseId) REFERENCES courses(courseId)
+    foreign key(studentId) REFERENCES students(studentId) on delete cascade on update cascade,
+    foreign key(courseId) REFERENCES courses(courseId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS eventParticipation(
     studentId varchar(36),
     eventId varchar(36),
-    foreign key(studentId) REFERENCES students(studentId),
-    foreign key(eventId) REFERENCES events(eventId)
+    foreign key(studentId) REFERENCES students(studentId) on delete cascade on update cascade,
+    foreign key(eventId) REFERENCES events(eventId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS teaches(
     instructorId varchar(36) not null,
     courseId varchar(36) not null,
-    foreign key(instructorId) REFERENCES instructors(instructorId),
-    foreign key(courseId) REFERENCES courses(courseId)
+    foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade,
+    foreign key(courseId) REFERENCES courses(courseId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS corporateProfessionals(
     instructorId varchar(36) not null,
     companyName varchar(20) not null,
-    foreign key(instructorId) REFERENCES instructors(instructorId)
+    foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS professors(
     instructorId varchar(36) not null,
     universityName varchar(50) not null,
-    foreign key(instructorId) REFERENCES instructors(instructorId)
+    foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS queries(
@@ -106,35 +106,35 @@ create table IF NOT EXISTS queries(
     studentId varchar(36),
     courseId varchar(36),
     primary key(queryId),
-    foreign key(studentId) REFERENCES students(studentId),
-    foreign key(courseId) REFERENCES courses(courseId)
+    foreign key(studentId) REFERENCES students(studentId) on delete cascade on update cascade,
+    foreign key(courseId) REFERENCES courses(courseId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS queryResponses(
     instructorId varchar(36),
     response varchar(100) not null,
     queryId varchar(36),
-    foreign key(queryId) REFERENCES queries(queryId),
-    foreign key(instructorId) REFERENCES instructors(instructorId)
+    foreign key(queryId) REFERENCES queries(queryId) on delete cascade on update cascade,
+    foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS queryTags(
     hashtags varchar(10),
     queryId varchar(36),
     primary key(hashtags),
-    foreign key(queryId) REFERENCES queries(queryId)
+    foreign key(queryId) REFERENCES queries(queryId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS payment(
-    transactionId numeric(30) not null,
+    transactionId varchar(36),
     paymentType varchar(20) not null,
     amount numeric(6),
     isTransactionSuccessful boolean not null,
-    studentId varchar(36) not null,
+    studentId varchar(36),
     courseId varchar(36),
     primary key(transactionId),
-    foreign key(studentId) REFERENCES students(studentId),
-    foreign key(courseId) REFERENCES courses(courseId)
+    foreign key(studentId) REFERENCES students(studentId) on delete cascade on update cascade,
+    foreign key(courseId) REFERENCES courses(courseId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS cardPayment(
@@ -144,7 +144,7 @@ create table IF NOT EXISTS cardPayment(
     expiryYear numeric(2),
     cvv numeric(4),
     transactionId varchar(36),
-    foreign key(transactionId) REFERENCES payment(transactionId)
+    foreign key(transactionId) REFERENCES payment(transactionId) on delete cascade on update cascade
 );
 
 create table IF NOT EXISTS electronicCheck(
@@ -153,5 +153,5 @@ create table IF NOT EXISTS electronicCheck(
     bankName varchar(20),
     branch varchar(20),
     transactionId varchar(36),
-    foreign key(transactionId) REFERENCES payment(transactionId)
+    foreign key(transactionId) REFERENCES payment(transactionId) on delete cascade on update cascade
 );
