@@ -4,20 +4,20 @@ public class Instructor {
 	private String userName;
 	private String password;
 	private String instructorId;
-	private int exp;
+	private int teachingExperience;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String dob;
 	private String[] contacts;
 		
-	public Instructor(String userName, String password, String instructorId, int exp, String firstName, String lastName,
+	public Instructor(String userName, String password, String instructorId, int teachingExperience, String firstName, String lastName,
 			String email, String dob, String[] contacts) {
 		super();
 		this.userName = userName;
 		this.password = password;
 		this.instructorId = instructorId;
-		this.exp = exp;
+		this.teachingExperience = teachingExperience;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -44,10 +44,10 @@ public class Instructor {
 		this.instructorId = instructorId;
 	}
 	public int getExp() {
-		return exp;
+		return teachingExperience;
 	}
 	public void setExp(int exp) {
-		this.exp = exp;
+		this.teachingExperience = exp;
 	}
 	public String getFirstName() {
 		return firstName;
