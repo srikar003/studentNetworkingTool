@@ -18,10 +18,10 @@ public class CourseController {
 	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(method = RequestMethod.POST, value = "/addCourse")
 	public boolean addCourses(@RequestBody Course course) {
-		String insertCourseAdditionQuery = "INSERT INTO courses (courseId, courseName, isPaidCourse, price) VALUES (?, ?, ?, ?)";
+		String insertCourseAdditionQuery = "INSERT INTO courses (courseId, courseName, isPaidCourse, price, description) VALUES (?, ?, ?, ?, ?)";
 		try {
 			int result = jdbcTemplate.update(insertCourseAdditionQuery, course.getCourseId(), course.getCourseName(),
-					course.isPaidCourse(), course.getPrice());
+					course.isPaidCourse(), course.getPrice(), course.getDescription());
 			if (result > 0) {
 				System.out.println("A new row has been inserted.");
 				return true;

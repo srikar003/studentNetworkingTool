@@ -6,14 +6,16 @@ public class Course {
 	private String courseId;
 	private String courseName;
 	private boolean isPaidCourse;
+	private String description;
 	private double price;
 
-	public Course(String courseId, String courseName, boolean isPaidCourse, double price) {
+	public Course(String courseId, String courseName, boolean isPaidCourse, double price, String description) {
 		super();
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.isPaidCourse = isPaidCourse;
 		this.price = price;
+		this.description = description;
 	}
 
 	public String getCourseId() {
@@ -47,5 +49,14 @@ public class Course {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 
 }

@@ -30,6 +30,7 @@ create table IF NOT EXISTS students(
 create table IF NOT EXISTS courses(
     courseId varchar(36) not null,
     courseName varchar(40) not null,
+    `description` varchar(100) not null,
     isPaidCourse boolean not null,
     price numeric(5),
     primary key(courseId)
