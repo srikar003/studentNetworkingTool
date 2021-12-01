@@ -64,7 +64,7 @@ public class StudentController {
 	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(method = RequestMethod.POST, value = "/studentSignIn")
 	public Login login(@RequestBody Login loginData) {
-		String loginQuery = "select sr.userName as userName, sr.password as password, student.studentId as studentId from studentRegistration sr join student where sr.userName = ? and sr.password =?";
+		String loginQuery = "select sr.userName as userName, sr.password as password, students.studentId as studentId from studentRegistration sr join students where sr.userName = ? and sr.password =?";
 		List<Login> val = jdbcTemplate.query(loginQuery, new Object[] { loginData.userName, loginData.password },
 				new RowMapper<Login>() {
 

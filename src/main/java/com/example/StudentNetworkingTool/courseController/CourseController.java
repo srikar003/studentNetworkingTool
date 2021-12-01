@@ -60,13 +60,14 @@ public class CourseController {
 	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(method = RequestMethod.GET, value = "/getCourses")
 	public List<CourseData> courseData() {
-		String CourseDataQuery = "select firstName,lastName,courseName, description, isPaidCourse, price from instructors as i join courses as c join teaches as t where i.instructorId = t.instructorId and c.courseId=t.courseId";
+		String CourseDataQuery = "select firstName,lastName,courseName, description, isPaidCourse, price, c.courseId from instructors as i join courses as c join teaches as t where i.instructorId = t.instructorId and c.courseId=t.courseId";
 		List<CourseData> courseList = jdbcTemplate.query(CourseDataQuery, new RowMapper<CourseData>() {
 			public CourseData mapRow(ResultSet result, int rowNum) throws SQLException {
 
 				String fullName = result.getString("firstName") + " " + result.getString("lastName");
 				CourseData cd = new CourseData(fullName, result.getString("courseName"),
-						result.getString("description"), result.getBoolean("isPaidCourse"), result.getInt("price"));
+						result.getString("description"), result.getBoolean("isPaidCourse"), result.getInt("price"),
+						result.getString("courseId"));
 				return cd;
 			}
 		});
@@ -88,14 +89,17 @@ class CourseData {
 	public String fullName;
 	public String courseName;
 	public String description;
+	public String courseId;
 	public boolean isPaidCourse;
 	public int price;
 
-	public CourseData(String fullName, String courseName, String description, boolean isPaidCourse, int price) {
+	public CourseData(String fullName, String courseName, String description, boolean isPaidCourse, int price,
+			String courseId) {
 		this.fullName = fullName;
 		this.courseName = courseName;
 		this.description = description;
 		this.isPaidCourse = isPaidCourse;
 		this.price = price;
+		this.courseId = courseId;
 	}
 }

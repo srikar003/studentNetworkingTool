@@ -40,13 +40,14 @@ public class EventController {
 	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(method = RequestMethod.GET, value = "/getEvents")
 	public List<EventData> eventData() {
-		String EventDataQuery = "select firstName,lastName,eventName from instructors, events where instructors.instructorId = events.instructorId";
+		String EventDataQuery = "select eventId, firstName,lastName,description,eventName from instructors, events where instructors.instructorId = events.instructorId";
 		List<EventData> eventList = jdbcTemplate.query(EventDataQuery, new RowMapper<EventData>() {
 			public EventData mapRow(ResultSet result, int rowNum) throws SQLException {
 
 				String fullName = result.getString("instructors.firstname") + " "
 						+ result.getString("instructors.lastname");
-				EventData ed = new EventData(fullName, result.getString("eventName"), result.getString("description"));
+				EventData ed = new EventData(result.getString("eventId"), fullName, result.getString("eventName"),
+						result.getString("description"));
 				return ed;
 			}
 		});
@@ -58,8 +59,10 @@ class EventData {
 	public String fullName;
 	public String eventName;
 	public String description;
+	public String eventId;
 
-	public EventData(String fullName, String eventName, String description) {
+	public EventData(String eventId, String fullName, String eventName, String description) {
+		this.eventId = eventId;
 		this.fullName = fullName;
 		this.eventName = eventName;
 		this.description = description;
