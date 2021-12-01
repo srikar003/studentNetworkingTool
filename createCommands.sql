@@ -62,10 +62,10 @@ create table IF NOT EXISTS instructorContact(
     foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade
 );
 
-
 create table IF NOT EXISTS events(
     eventId varchar(36),
     eventName varchar(20),
+    description varchar(100),
     instructorId varchar(36),
     primary key(eventId),    
     foreign key(instructorId) REFERENCES instructors(instructorId) on delete cascade on update cascade

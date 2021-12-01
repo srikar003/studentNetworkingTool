@@ -35,7 +35,7 @@ public class StudentController {
 					student.getLastName(), student.getEmail(), student.getDob(), student.getCollege(),
 					student.getDept(), student.getUserName());
 			String[] contactList = student.getContacts();
-			
+
 			if (result > 0 && result1 > 0) {
 				System.out.println("A new row has been inserted.");
 			} else {
@@ -63,20 +63,21 @@ public class StudentController {
 	@SuppressWarnings("deprecation")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(method = RequestMethod.POST, value = "/studentSignIn")
-	public boolean login(@RequestBody Login loginData) {
-		String loginQuery = "select * from studentRegistration where userName = ? and password =?";
+	public Login login(@RequestBody Login loginData) {
+		String loginQuery = "select sr.userName as userName, sr.password as password, student.studentId as studentId from studentRegistration sr join student where sr.userName = ? and sr.password =?";
 		List<Login> val = jdbcTemplate.query(loginQuery, new Object[] { loginData.userName, loginData.password },
 				new RowMapper<Login>() {
 
 					public Login mapRow(ResultSet result, int rowNum) throws SQLException {
-						Login ln = new Login(result.getString("userName"), result.getString("password"));
+						Login ln = new Login(result.getString("userName"), result.getString("password"),
+								result.getString("studentId"));
 						return ln;
 					}
 				});
 
 		if (val.size() > 0) {
-			return true;
+			return val.get(0);
 		}
-		return false;
+		return null;
 	}
 }

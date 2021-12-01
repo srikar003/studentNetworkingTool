@@ -18,10 +18,10 @@ public class CorporateProfessionalController {
 	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(method = RequestMethod.POST, value = "/addCorporateProfessional")
 	public boolean addCorporateProfessional(@RequestBody CorporateProfessional corporateprofessional) {
-		String insertCorporateProfessionalAdditionQuery = "INSERT INTO corporateProfessionals (instructorId, company) VALUES (?, ?)";
+		String insertCorporateProfessionalAdditionQuery = "INSERT INTO corporateProfessionals (instructorId, company, areaOfExpertise) VALUES (?, ?, ?)";
 		try {
 			int result = jdbcTemplate.update(insertCorporateProfessionalAdditionQuery,
-					corporateprofessional.getInstructorId(), corporateprofessional.getCompany());
+					corporateprofessional.getInstructorId(), corporateprofessional.getCompany(), corporateprofessional.getAreaOfExpertise());
 			if (result > 0) {
 				System.out.println("A new row has been inserted.");
 				return true;
