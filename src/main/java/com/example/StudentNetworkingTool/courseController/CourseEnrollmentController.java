@@ -17,7 +17,7 @@ public class CourseEnrollmentController {
 	private JdbcTemplate jdbcTemplate;
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@RequestMapping(method = RequestMethod.POST, value = "/addEvent")
+	@RequestMapping(method = RequestMethod.POST, value = "/enrollCourse")
 	public boolean addEvents(@RequestBody CourseEnrollment courseEnrollment) {
 		String insertCourseEnrollmentQuery = "INSERT INTO courseEnrollment (courseId, studentId) VALUES (?, ?)";
 		try {
