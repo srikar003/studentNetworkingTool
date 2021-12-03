@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -63,7 +65,7 @@ public class StudentController {
 	@SuppressWarnings("deprecation")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(method = RequestMethod.POST, value = "/studentSignIn")
-	public Login login(@RequestBody Login loginData) {
+	public ResponseEntity<Login> login(@RequestBody Login loginData) {
 		String loginQuery = "select sr.userName as userName, sr.password as password, students.studentId as studentId from studentRegistration sr join students where sr.userName = ? and sr.password =?";
 		List<Login> val = jdbcTemplate.query(loginQuery, new Object[] { loginData.userName, loginData.password },
 				new RowMapper<Login>() {
@@ -76,8 +78,9 @@ public class StudentController {
 				});
 
 		if (val.size() > 0) {
-			return val.get(0);
+			System.out.println(val.get(0));
+			return new ResponseEntity<Login>(val.get(0), HttpStatus.OK);
 		}
-		return null;
+		return new ResponseEntity<Login>(HttpStatus.BAD_REQUEST);
 	}
 }

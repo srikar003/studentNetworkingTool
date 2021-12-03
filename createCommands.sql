@@ -9,7 +9,7 @@ create table IF NOT EXISTS studentRegistration(
 );
 
 create table IF NOT EXISTS instructorRegistration(
-    userName varchar(10) not null,
+    userName varchar(20) not null,
     password varchar(20) not null,
     primary key(userName)
 );
@@ -20,9 +20,9 @@ create table IF NOT EXISTS students(
     lastName varchar(20),
     email varchar(30) not null,
     dateOfBirth date not null,
-    college varchar(20) not null,
-    department varchar(15) not null,
-    userName varchar(10) not null,
+    college varchar(50) not null,
+    department varchar(50) not null,
+    userName varchar(20) not null,
     primary key(studentId),
     foreign key(userName) REFERENCES studentRegistration(userName) on delete cascade on update cascade
 );
